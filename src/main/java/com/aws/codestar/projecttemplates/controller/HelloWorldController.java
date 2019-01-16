@@ -91,14 +91,20 @@ public class HelloWorldController {
         } catch (IOException e) {
             str += "IO Exception caught";
         }
-        JSONObject empDetail = new JSONObject();
-        JSONObject getValidateResponse = new JSONObject();
+        //JSONObject empDetail = new JSONObject();
+        //JSONObject getValidateResponse = new JSONObject();
+        ArrayList<String> arra = new ArrayList<String>();
+		if(emp_present){
+			arra.add("hi");
+		} else {
+			arra.add("bye");
+		}
         //if(emp_present) {
-        	empDetail.put("empid", data.get(0));
+        	/*empDetail.put("empid", data.get(0));
         	empDetail.put("empname", data.get(1));
         	empDetail.put("careerlevel", data.get(2));
         	empDetail.put("duname", data.get(3));
-        	empDetail.put("worklocation", data.get(4));
+        	empDetail.put("worklocation", data.get(4));*/
         	
             //getValidateResponse.put("empexists", new Boolean(emp_present).toString());
             //getValidateResponse.put("empdetail", empDetail);
@@ -117,6 +123,6 @@ public class HelloWorldController {
 	        getValidateResponse.put("statusmessage", "Failed");
     	
         }*/
-    	return empDetail.toString();
+    	return arra.toString();
     }
 }
