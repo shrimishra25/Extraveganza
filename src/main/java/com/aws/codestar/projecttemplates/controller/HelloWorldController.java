@@ -93,18 +93,18 @@ public class HelloWorldController {
         }
         JSONObject empDetail = new JSONObject();
         JSONObject getValidateResponse = new JSONObject();
-        if(emp_present) {
+        //if(emp_present) {
         	empDetail.put("empid", data.get(0));
         	empDetail.put("empname", data.get(1));
         	empDetail.put("careerlevel", data.get(2));
         	empDetail.put("duname", data.get(3));
         	empDetail.put("worklocation", data.get(4));
         	
-            getValidateResponse.put("empexists", new Boolean(emp_present).toString());
-            getValidateResponse.put("empdetail", empDetail);
-            getValidateResponse.put("statuscode", "200");
-            getValidateResponse.put("statusmessage", "OK");
-        } else {
+            //getValidateResponse.put("empexists", new Boolean(emp_present).toString());
+            //getValidateResponse.put("empdetail", empDetail);
+            //getValidateResponse.put("statuscode", "200");
+            //getValidateResponse.put("statusmessage", "OK");
+        /*} else {
 	    	empDetail.put("empid", data.get(0));
 	    	empDetail.put("empname", data.get(1));
 	    	empDetail.put("careerlevel", data.get(2));
@@ -116,7 +116,7 @@ public class HelloWorldController {
 	        getValidateResponse.put("statuscode", "201");
 	        getValidateResponse.put("statusmessage", "Failed");
     	
-        }
-    	return getValidateResponse.toString();
+        }*/
+    	return empDetail.toString();
     }
 }
