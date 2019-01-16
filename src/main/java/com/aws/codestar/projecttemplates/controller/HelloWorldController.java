@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloWorldController {
 
     private static final String MESSAGE_FORMAT = "Hello %s!";
+    boolean emp_present = false;
 
     @RequestMapping(value="/validate", method = RequestMethod.GET, produces = "application/json")
     public String helloWorldGet(@RequestParam(value = "id", defaultValue = "") String id) {
@@ -50,7 +51,6 @@ public class HelloWorldController {
     	ArrayList<String> data = new ArrayList<String>();
         String str = "Append here: ";
         File excelFile = new File("event.xlsx");
-        boolean emp_present = false;
         //str += HelloWorldController.class.getResource("event.xlsx").getPath();
         try {
         		ClassLoader classLoader = getClass().getClassLoader();
@@ -91,7 +91,7 @@ public class HelloWorldController {
         } catch (IOException e) {
             str += "IO Exception caught";
         }
-        /*JSONObject empDetail = new JSONObject();
+        JSONObject empDetail = new JSONObject();
         JSONObject getValidateResponse = new JSONObject();
         if(emp_present) {
         	empDetail.put("empid", data.get(0));
@@ -117,7 +117,6 @@ public class HelloWorldController {
 	        getValidateResponse.put("statusmessage", "Failed");
     	
         }
-    	return getValidateResponse.toString();*/
-        return "";
+    	return getValidateResponse.toString();
     }
 }
