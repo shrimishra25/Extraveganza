@@ -35,8 +35,8 @@ public class HelloWorldController {
     @RequestMapping(value="/validate", method = RequestMethod.GET, produces = "application/json")
     public String helloWorldGet(@RequestParam(value = "id", defaultValue = "") String id) {
     	 ValidateHelper vHelper = new ValidateHelper();
-    	 String responseHelper = vHelper.validate(id);
-    	 return ResponseEntity.ok(responseHelper);
+    	 //String responseHelper = vHelper.validate(id);
+    	 return vHelper.validate(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
