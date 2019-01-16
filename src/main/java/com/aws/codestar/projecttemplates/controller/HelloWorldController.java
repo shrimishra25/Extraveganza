@@ -100,7 +100,7 @@ public class HelloWorldController {
         	empDetail.put("duname", data.get(3));
         	empDetail.put("worklocation", data.get(4));
         	
-            getValidateResponse.put("empexists", new Boolean(emp_present)).toString();
+            getValidateResponse.put("empexists", new Boolean(emp_present).toString());
             getValidateResponse.put("empdetail", empDetail);
             getValidateResponse.put("statuscode", "200");
             getValidateResponse.put("statusmessage", "OK");
@@ -111,7 +111,7 @@ public class HelloWorldController {
 	    	empDetail.put("duname", data.get(3));
 	    	empDetail.put("worklocation", data.get(4));
 	    	
-	        getValidateResponse.put("empexists", new Boolean(emp_present)).toString();
+	        getValidateResponse.put("empexists", new Boolean(emp_present).toString());
 	        getValidateResponse.put("empdetail", empDetail);
 	        getValidateResponse.put("statuscode", "201");
 	        getValidateResponse.put("statusmessage", "Failed");
