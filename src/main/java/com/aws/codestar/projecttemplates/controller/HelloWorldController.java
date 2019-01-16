@@ -91,7 +91,7 @@ public class HelloWorldController {
         } catch (IOException e) {
             str += "IO Exception caught";
         }
-        JSONObject empDetail = new JSONObject();
+        /*JSONObject empDetail = new JSONObject();
         JSONObject getValidateResponse = new JSONObject();
         if(emp_present) {
         	empDetail.put("empid", data.get(0));
@@ -117,6 +117,7 @@ public class HelloWorldController {
 	        getValidateResponse.put("statusmessage", "Failed");
     	
         }
-    	return getValidateResponse.toString();
+    	return getValidateResponse.toString();*/
+        return "";
     }
 }
