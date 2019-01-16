@@ -34,9 +34,7 @@ public class HelloWorldController {
 
     @RequestMapping(value="/validate", method = RequestMethod.GET, produces = "application/json")
     public String helloWorldGet(@RequestParam(value = "id", defaultValue = "") String id) {
-    	 ValidateHelper vHelper = new ValidateHelper();
-    	 String responseHelper = vHelper.validate(id);
-    	 return responseHelper;
+        return excelResponse(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
@@ -88,7 +86,20 @@ public class HelloWorldController {
         } catch (IOException e) {
             str += "IO Exception caught";
         }
-        String msg = new JSONObject().put("present", emp_present).toString();
-        return msg;
+        JSONObject empDetail = new JSONObject();
+    	empDetail.put("empid", data.get(0));
+    	empDetail.put("empname", data.get(1));
+    	empDetail.put("careerlevel", data.get(2));
+    	empDetail.put("duname", data.get(3));
+    	empDetail.put("worklocation", data.get(4));
+    	
+    	JSONObject getValidateResponse = new JSONObject();
+        
+        getValidateResponse.put("empexists", new Boolean(emp_present)).toString();
+        getValidateResponse.put("empdetail", empDetail);
+        getValidateResponse.put("statuscode", "200");
+        getValidateResponse.put("statusmessage", "OK");
+    	
+    	return getValidateResponse.toString();
     }
 }
