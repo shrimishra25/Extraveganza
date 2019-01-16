@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.net.URL;
 import java.lang.*;
@@ -47,6 +48,7 @@ public class HelloWorldController {
     }
     
     private String excelResponse(String id) {
+    	ArrayList<String> data = new ArrayList<String>();
         String str = "Append here: ";
         File excelFile = new File("event.xlsx");
         boolean emp_present = false;
@@ -74,10 +76,14 @@ public class HelloWorldController {
         				cell.setCellType(Cell.CELL_TYPE_STRING);
         				str += cell.toString()+" ";
         				if(id.trim().equals(cell.toString().trim())) {
-        					emp_present = true;
-        					break;
+    						data.add(cell.toString());
+    						emp_present = true;
         				}
         			}
+        			if (!data.isEmpty()) {
+    					emp_present = true;
+    					break;
+    				}
         		}   
         		workbook.close();
         		fis.close();      
@@ -87,19 +93,31 @@ public class HelloWorldController {
             str += "IO Exception caught";
         }
         JSONObject empDetail = new JSONObject();
-    	empDetail.put("empid", data.get(0));
-    	empDetail.put("empname", data.get(1));
-    	empDetail.put("careerlevel", data.get(2));
-    	empDetail.put("duname", data.get(3));
-    	empDetail.put("worklocation", data.get(4));
+        JSONObject getValidateResponse = new JSONObject();
+        if(emp_present) {
+        	empDetail.put("empid", data.get(0));
+        	empDetail.put("empname", data.get(1));
+        	empDetail.put("careerlevel", data.get(2));
+        	empDetail.put("duname", data.get(3));
+        	empDetail.put("worklocation", data.get(4));
+        	
+            getValidateResponse.put("empexists", new Boolean(emp_present)).toString();
+            getValidateResponse.put("empdetail", empDetail);
+            getValidateResponse.put("statuscode", "200");
+            getValidateResponse.put("statusmessage", "OK");
+        } else {
+	    	empDetail.put("empid", data.get(0));
+	    	empDetail.put("empname", data.get(1));
+	    	empDetail.put("careerlevel", data.get(2));
+	    	empDetail.put("duname", data.get(3));
+	    	empDetail.put("worklocation", data.get(4));
+	    	
+	        getValidateResponse.put("empexists", new Boolean(emp_present)).toString();
+	        getValidateResponse.put("empdetail", empDetail);
+	        getValidateResponse.put("statuscode", "201");
+	        getValidateResponse.put("statusmessage", "Failed");
     	
-    	JSONObject getValidateResponse = new JSONObject();
-        
-        getValidateResponse.put("empexists", new Boolean(emp_present)).toString();
-        getValidateResponse.put("empdetail", empDetail);
-        getValidateResponse.put("statuscode", "200");
-        getValidateResponse.put("statusmessage", "OK");
-    	
+        }
     	return getValidateResponse.toString();
     }
 }
