@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.aws.codestar.projecttemplates.helper.ValidateHelper;
 
 
 /**
@@ -34,9 +33,7 @@ public class HelloWorldController {
 
     @RequestMapping(value="/validate", method = RequestMethod.GET, produces = "application/json")
     public String helloWorldGet(@RequestParam(value = "id", defaultValue = "") String id) {
-    	 ValidateHelper vHelper = new ValidateHelper();
-    	 //String responseHelper = vHelper.validate(id);
-    	 return excelResponse(id);
+        return excelResponse(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
